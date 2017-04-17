@@ -2,7 +2,7 @@
 * @Author: gunjankothari
 * @Date:   2017-04-13 05:29:32
 * @Last Modified by:   Gunjan
-* @Last Modified time: 2017-04-17 19:01:12
+* @Last Modified time: 2017-04-18 00:24:44
 */
 
 'use strict';
@@ -14,7 +14,7 @@
 		if(options){
 			App.listenerEvents.call(this);
 			this.template = options.template || "";
-			this.compiledTemplate = _.template(this.template.html());
+			this.compiledTemplate = _.template(document.querySelector(this.template).innerHTML);
 			this.region = options.region || "body";
 			this.model = options.model || new App.Model();
 			this.afterRender = options.afterRender;
@@ -22,8 +22,8 @@
 			this.beforeRerender = options.beforeRerender;
 			this.renderCount = 0;
 
-			this.$el = $('<div></div>');
-			$(this.region).append(this.$el);
+			this.$el = document.createElement('div');
+			document.querySelector(this.region).appendChild(this.$el);
 
 			if(App.isFunction(options.init)){
 				options.init.call(this);
@@ -47,7 +47,8 @@
 				this.beforeRerender();
 			}
 		
-			var content = this.compiledTemplate($.extend(true, {}, this.model.getData(), this.templateContext));
+			var content = document.createElement('div')
+			content.innerHTML = this.compiledTemplate(App.extend(true, this.model.getData(), this.templateContext));
 			
 			if(this.beforeRender){
 				this.afterRender.call(this);
@@ -55,16 +56,19 @@
 
 			switch(method){
 				case 'append':
-					this.$el.append(content);
+					this.$el.appendChild(content);
 					break;
 
 				case 'prepend':
-					this.$el.prepend(content);
+					this.$el.prependChild(content);
 					break;
 
 				case 'replace':
 				default:
-					this.$el.html(content);
+					while (this.$el.firstChild) {
+					    this.$el.removeChild(this.$el.firstChild);
+					}
+					this.$el.appendChild(content) ;
 					break;
 			}
 			

@@ -1,8 +1,8 @@
 /*
 * @Author: gunjankothari
 * @Date:   2017-04-13 05:28:34
-* @Last Modified by:   gunjankothari
-* @Last Modified time: 2017-04-17 08:22:30
+* @Last Modified by:   Gunjan
+* @Last Modified time: 2017-04-18 00:58:36
 */
 
 'use strict';
@@ -34,7 +34,7 @@
 
 	Model.prototype.getData = function(){
 
-		return $.extend(true,{},this.data);
+		return App.extend( true, {}, this.data);
 	}
 
 	Model.prototype.setData = function(param, data, updateLocalStorage, silent){
@@ -215,7 +215,7 @@
 		var obj = _.findWhere(this.data[ this.dataArrayField ], {
 			id:value+""
 		});
-		return $.extend(true, {}, obj);
+		return App.extend(true, {}, obj);
 	}
 
 //======== Faviourite Model ============================================

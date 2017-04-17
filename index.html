@@ -22,7 +22,7 @@
 				</div>
 			</div>
 
-			<div id="test1" class="col s12">
+			<div id="searchAreaWrapper" class="col s12" style="display:block">
 				<div class="row">
 					<div class="col s12">
 						<div col="row" id="searchTemplateContainer">
@@ -36,22 +36,11 @@
 					</div>
 				</div>
 			</div>
-			<div id="test2" class="col s12">
+			<div id="favAreaWrapper" class="col s12" style="display:none">
 				<div class="row">
 					<div class="col s12 m12">
 						<h6 class="center-align">Favorite Pages</h6>
 						<div id="favResult" class="row"></div>		
-					</div>
-				</div>	
-			</div>
-			<div id="test3" class="col s12">
-				<div class="row">
-					<div class="col s12">
-						<div col="row">
-						</div>
-					</div>
-					<div class="col s12 m12">
-						
 					</div>
 				</div>	
 			</div>
@@ -121,8 +110,9 @@
 		      <a href="#" class="brand-logo"> <i class="material-icons">thumb_up</i>myPages</a>
 		      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 		      <ul class="tabs tabs-transparent right-align">
-		        <li id="searchTab" class="tab"><a class="active" href="#test1">Search Page</a></li>
-		        <li id="favTab" class="tab"><a  href="#test2">Favorite Pages</a></li>
+		        <li id="searchTab" class="tab"><a class="active" href="#searchArea">Search Page</a></li>
+		        <li id="favTab" class="tab"><a  href="#favArea">Favorite Pages</a></li>
+		        <div class="indicator"></div>
 		      </ul>
 		    </div>
 		</script>
@@ -134,15 +124,16 @@
             <a class="grey-text text-lighten-4 right" href=""><img src="images/animate.png" alt="animate"/></a>        
             <a class="grey-text text-lighten-4 right" href=""><img src="images/underscore.png" alt="underscore"/></a>
             <a class="grey-text text-lighten-4 right" href=""><img src="images/materializecss.png" alt="materializecss"/></a>
+            <div class="noJquery"></div>
             <a class="grey-text text-lighten-4 right" href=""><img src="images/jquery.png" alt="jquery"/></a>
             </div>
     	</script>
 
 
-    	<script src="libraries/jquery.min.js"></script>
+    	<!-- <script src="libraries/jquery.min.js"></script> -->
     	<script src="libraries/underscore-min.js"></script>
     	<!-- Compiled and minified JavaScript -->
-		<script src="libraries/materialize/js/materialize.js"></script>
+		<!-- <script src="libraries/materialize/js/materialize.js"></script> -->
 		
 		<script>
 		(function(d, s, id){
@@ -159,6 +150,7 @@
 		</script>
 		<script type="text/javascript" src="js/helper/listener.js"></script>
 		<script type="text/javascript" src="js/helper/common.js"></script>
+		<script type="text/javascript" src="js/helper/util.js"></script>
 		<script type="text/javascript" src="js/helper/model.js"></script>
 		<script type="text/javascript" src="js/helper/view.js"></script>
 		<script type="text/javascript" src="js/helper/collectionView.js"></script>

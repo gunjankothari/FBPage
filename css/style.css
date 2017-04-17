@@ -109,3 +109,18 @@ div#footer-copyright {
 .emptyView .valign-wrapper{
     height: calc(50vh - 0px);
 }
+.indicator {
+    -webkit-transition: all 300ms ease-out 0s;
+    -moz-transition: all 300ms ease-out 0s;
+    -o-transition: all 300ms ease-out 0s;
+    transition: all 300ms ease-out 0s;
+}
+.noJquery {
+    position: absolute;
+    height: 5px;
+    width: 117px;
+    background: #e80035;
+    right: 340px;
+    margin-top: -9px;
+    transform: rotate(-10deg);
+}
