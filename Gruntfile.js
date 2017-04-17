@@ -17,7 +17,7 @@ module.exports = function(grunt) {
         separator: ';',
       },
       dist: {
-        src: ['js/helper/listener.js', 'js/helper/common.js', 'js/helper/model.js', 'js/helper/view.js', 'js/helper/collectionView.js', 'js/app.js'],
+        src: ['js/helper/listener.js', 'js/helper/util.js', 'js/helper/common.js', 'js/helper/model.js', 'js/helper/view.js', 'js/helper/collectionView.js', 'js/app.js'],
         //src: ['js/**/*.js'],
         dest: 'dist/app.js',
       },

@@ -2,7 +2,7 @@
 * @Author: gunjankothari
 * @Date:   2017-04-13 05:57:33
 * @Last Modified by:   Gunjan
-* @Last Modified time: 2017-04-18 02:44:56
+* @Last Modified time: 2017-04-18 03:12:00
 */
 
 'use strict';
@@ -19,6 +19,7 @@
 		route = window.location.hash;
 		switch(route){
 			case '#searchArea':
+			default:
 				resultView.render();
 				document.querySelector('#favAreaWrapper').style.display = 'none';
 				document.querySelector('#searchAreaWrapper').style.display = 'block';
