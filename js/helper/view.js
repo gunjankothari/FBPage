@@ -1,8 +1,8 @@
 /*
 * @Author: gunjankothari
 * @Date:   2017-04-13 05:29:32
-* @Last Modified by:   gunjankothari
-* @Last Modified time: 2017-04-17 11:14:55
+* @Last Modified by:   Gunjan
+* @Last Modified time: 2017-04-17 19:01:12
 */
 
 'use strict';
@@ -14,7 +14,7 @@
 		if(options){
 			App.listenerEvents.call(this);
 			this.template = options.template || "";
-			this.compiledTemplate = _.template(document.getElementById(this.template).innerHTML);
+			this.compiledTemplate = _.template(this.template.html());
 			this.region = options.region || "body";
 			this.model = options.model || new App.Model();
 			this.afterRender = options.afterRender;

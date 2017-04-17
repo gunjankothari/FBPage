@@ -1,8 +1,8 @@
 /*
 * @Author: gunjankothari
 * @Date:   2017-04-13 05:57:33
-* @Last Modified by:   gunjankothari
-* @Last Modified time: 2017-04-17 11:13:22
+* @Last Modified by:   Gunjan
+* @Last Modified time: 2017-04-17 19:02:42
 */
 
 'use strict';
@@ -16,10 +16,8 @@
 	});
 
 	var searchView = new App.View({
-		//template : $('#searchTemplate'),
-		//region: '#searchTemplateContainer',
-		template : 'searchTemplate',
-		region: 'searchTemplateContainer',
+		template : $('#searchTemplate'),
+		region: '#searchTemplateContainer',
 		model: searchModel,
 		afterRender:function(){
 			var that = this;
@@ -41,10 +39,8 @@
 //============================== Header View ==========================================//
 
 	var headerView = new App.View({
-		//template : $('#headerTemplate'),
-		//region: '#headerWrapper',
-		template : 'headerTemplate',
-		region: 'headerWrapper',
+		template : $('#headerTemplate'),
+		region: '#headerWrapper',
 		afterRender:function(){
 			var that = this;
 			this.$el.on('click','ul li.tab',function(e){
@@ -116,12 +112,9 @@
 //============================= Search Result View =============================================//
 	
 	var resultView = new App.CollectionView({
-		//template : $('#cardTemplate'),
-   		//emptyTemplate: $('#noDataAvailable'),
-		//region: '#searchResult',
-		template : 'cardTemplate',
-   		emptyTemplate: 'noDataAvailable',
-		region: 'searchResult',
+		template : $('#cardTemplate'),
+   		emptyTemplate: $('#noDataAvailable'),
+		region: '#searchResult',
 		model: fb_model,
 		templateContext:{
 			colClass:'l2 m3 s12',
@@ -156,10 +149,8 @@
 
 	//Creating View.
 	var favResultView = new App.CollectionView({
-		//template : $('#cardTemplate'),
-		//emptyTemplate: '#noDataAvailable',
-		template : 'cardTemplate',
-		emptyTemplate: 'noDataAvailable',
+		template : $('#cardTemplate'),
+		emptyTemplate: $('#noDataAvailable'),
 		region: '#favResult',
 		model: fav_model,
 		templateContext:{
