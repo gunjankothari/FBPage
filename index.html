@@ -1,0 +1,168 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Compiled and minified CSS -->
+		<link rel="stylesheet" href="libraries/materialize/css/materialize.min.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link href="libraries/animate.css-master/animate.min.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">          
+        <title>Facebook Page Search</title>
+    </head>
+    <body>
+    	
+    	<div class="container-fluid">
+    		<div class="row">
+    			<div class="navbar-fixed">
+    			  <nav id="headerWrapper" class="nav-extended blue">
+    			  	
+				  </nav>
+				</div>
+			</div>
+
+			<div id="test1" class="col s12">
+				<div class="row">
+					<div class="col s12">
+						<div col="row" id="searchTemplateContainer">
+			    		</div>
+					</div>
+					<div class="col s12 m12">
+						<h6 class="center-align">Search Result</h6>
+						<div id="searchResult" class="row">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="test2" class="col s12">
+				<div class="row">
+					<div class="col s12 m12">
+						<h6 class="center-align">Favorite Pages</h6>
+						<div id="favResult" class="row"></div>		
+					</div>
+				</div>	
+			</div>
+			<div id="test3" class="col s12">
+				<div class="row">
+					<div class="col s12">
+						<div col="row">
+						</div>
+					</div>
+					<div class="col s12 m12">
+						
+					</div>
+				</div>	
+			</div>
+      	</div>
+      	<div id="footer-copyright" class="footer-copyright grey lighten-2"></div>
+
+      	<script type="text/template" id="noDataAvailable">
+      		<div class="emptyView container">
+	      		<div class="row">
+			      	<div class="valign-wrapper">
+			      		
+					  	<h5 class="center-align"><i class="center-align material-icons">error_outline</i>No Page available</h5>
+					</div>
+				</div>
+			</div>
+      	</script>
+
+
+      	<script type="text/template"  id="searchTemplate">	
+	        <nav class="white">
+			    <div class="nav-wrapper">
+			        <div class="input-field">
+			          <input id="search" type="search" value="<%= ( typeof search != 'undefined' ? search : '' ) %>" placeholder="Search for Facebook Page..." required />
+			          <label class="label-icon <%= ( typeof search != 'undefined' ? 'active' : '' ) %>" for="search">
+			          	<i class="material-icons" style="color:gray">search</i>
+			          </label>
+			          <i class="material-icons">close</i>
+			        </div>
+			    </div>
+			  </nav>
+        </script>  
+
+		<script type="text/template" id="cardTemplate">
+			<div class="col <%= colClass %>">
+				<div class="card animated bounceIn">
+				    <div class="card-image waves-effect waves-block waves-light">
+					    <img class="activator" src="<%= getImagePath(obj.id) %>" alt="">  
+				    </div>
+				    <% if(!showFav()){ %>
+				    <a class="cancelBtn btn-floating halfway-fab waves-effect waves-light red lighten-2"><i class="material-icons">clear</i></a>
+				    <% } %>
+				    <% if(showFav()){ %>
+			        <a class="favBtn btn-floating halfway-fab waves-effect waves-light red <%= ( isFav(obj.id) ? '' : 'white') %>"><i class="material-icons">favorite</i></a>
+			         <% } %>
+				    <div class="card-content">
+				      	<span class="card-title activator grey-text text-darken-4">
+				      		<a href="<%= (typeof link !== 'undefined' ? link : '') %>" target="_blank"><%= name %></a>
+				      		<i class="material-icons right">more_vert</i>
+				      	</span>
+				     	<p><a href=""><%= category %></a></p>
+				    </div>
+				    <div class="card-reveal">
+				      	<span class="card-title grey-text text-darken-4"><%= name %><i class="material-icons right">close</i></span>
+				      	<p><%= obj.about %></p>
+				    </div>
+				    <div class="card-action">
+				    	<span class="material-icons">thumb_up</span>
+				    	<span class="likes"><%= (typeof fan_count !== "undefined" ? fan_count : "") %> Likes</span>
+				    	<span class="material-icons"></span>
+				    </div>
+				 </div>
+			</div>
+		</script>
+
+		<script type="text/template"  id="headerTemplate">
+		    <div class="nav-wrapper">
+		      <a href="#" class="brand-logo"> <i class="material-icons">thumb_up</i>myPages</a>
+		      <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+		      <ul class="tabs tabs-transparent right-align">
+		        <li id="searchTab" class="tab"><a class="active" href="#test1">Search Page</a></li>
+		        <li id="favTab" class="tab"><a  href="#test2">Favorite Pages</a></li>
+		      </ul>
+		    </div>
+		</script>
+    	
+    	<script type="text/template"  id="footerTemplate">
+    		<div class="footer-copyright">
+            <div class="container-fluid center-align">
+            © 2017 Gunjan Kothari Work
+            <a class="grey-text text-lighten-4 right" href=""><img src="images/animate.png" alt="animate"/></a>        
+            <a class="grey-text text-lighten-4 right" href=""><img src="images/underscore.png" alt="underscore"/></a>
+            <a class="grey-text text-lighten-4 right" href=""><img src="images/materializecss.png" alt="materializecss"/></a>
+            <a class="grey-text text-lighten-4 right" href=""><img src="images/jquery.png" alt="jquery"/></a>
+            </div>
+    	</script>
+
+
+    	<script src="libraries/jquery.min.js"></script>
+    	<script src="libraries/underscore-min.js"></script>
+    	<!-- Compiled and minified JavaScript -->
+		<script src="libraries/materialize/js/materialize.js"></script>
+		
+		<script>
+		(function(d, s, id){
+			 var js, fjs = d.getElementsByTagName(s)[0];
+			 if (d.getElementById(id)) {return;}
+			 js = d.createElement(s); js.id = id;
+			 js.src = "//connect.facebook.net/en_US/sdk.js";
+			 fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+		</script>
+
+		<script>
+			var app = {};
+		</script>
+		<script type="text/javascript" src="js/helper/listener.js"></script>
+		<script type="text/javascript" src="js/helper/common.js"></script>
+		<script type="text/javascript" src="js/helper/model.js"></script>
+		<script type="text/javascript" src="js/helper/view.js"></script>
+		<script type="text/javascript" src="js/helper/collectionView.js"></script>
+		<script type="text/javascript" src="js/app.js"></script>
+		<!--<script type="text/javascript" src="dist/app.min.js"></script>-->
+    </body>
+</html>
