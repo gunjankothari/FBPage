@@ -2,7 +2,7 @@
 * @Author: gunjankothari
 * @Date:   2017-04-13 05:57:33
 * @Last Modified by:   Gunjan
-* @Last Modified time: 2017-04-18 03:12:00
+* @Last Modified time: 2017-04-21 16:27:25
 */
 
 'use strict';
@@ -97,14 +97,7 @@
 		template : '#headerTemplate',
 		region: '#headerWrapper',
 		afterRender:function(){
-			var that = this;
-
-			
-			
-			//App.addEvent(this.$el, 'change', 'input#search', 'input:search', function(e){
-			App.addEvent(this, 'click', 'ul li.tab', function(e, element){
-
-			});
+		
 		},
 		beforeRerender:function(){
 			//App.removeEvent(parent, event, eventName)

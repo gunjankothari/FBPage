@@ -2,7 +2,7 @@
 * @Author: gunjankothari
 * @Date:   2017-04-13 05:29:32
 * @Last Modified by:   Gunjan
-* @Last Modified time: 2017-04-18 00:24:44
+* @Last Modified time: 2017-04-18 19:59:54
 */
 
 'use strict';
@@ -35,9 +35,7 @@
 	View.prototype.constructor = View;
 
 	App.extendClass(View, App.listenerEvents);
-	//_.extend(View.prototype, View.prototype.__proto__);
 	
-
 	//Render Method of View class.
 	View.prototype.render = function(method){
 

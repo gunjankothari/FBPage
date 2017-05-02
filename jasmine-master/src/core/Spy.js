@@ -1,0 +1,79 @@
+getJasmineRequireObj().Spy = function (j$) {
+
+  var nextOrder = (function() {
+    var order = 0;
+
+    return function() {
+      return order++;
+    };
+  })();
+
+  /**
+   * _Note:_ Do not construct this directly, use {@link spyOn}, {@link spyOnProperty}, {@link jasmine.createSpy}, or {@link jasmine.createSpyObj}
+   * @constructor
+   * @name Spy
+   */
+  function Spy(name, originalFn) {
+    var args = buildArgs(),
+      /*`eval` is the only option to preserve both this and context:
+        - former is needed to work as expected with methods,
+        - latter is needed to access real spy function and allows to reduce eval'ed code to absolute minimum
+        More explanation here (look at comments): http://www.bennadel.com/blog/1909-javascript-function-constructor-does-not-create-a-closure.htm
+       */
+      /* jshint evil: true */
+      wrapper = eval('(0, function (' + args + ') { return spy.apply(this, Array.prototype.slice.call(arguments)); })'),
+      /* jshint evil: false */
+      spyStrategy = new j$.SpyStrategy({
+        name: name,
+        fn: originalFn,
+        getSpy: function () {
+          return wrapper;
+        }
+      }),
+      callTracker = new j$.CallTracker(),
+      spy = function () {
+        /**
+         * @name Spy.callData
+         * @property {object} object - `this` context for the invocation.
+         * @property {number} invocationOrder - Order of the invocation.
+         * @property {Array} args - The arguments passed for this invocation.
+         */
+        var callData = {
+          object: this,
+          invocationOrder: nextOrder(),
+          args: Array.prototype.slice.apply(arguments)
+        };
+
+        callTracker.track(callData);
+        var returnValue = spyStrategy.exec.apply(this, arguments);
+        callData.returnValue = returnValue;
+
+        return returnValue;
+      };
+
+    function buildArgs() {
+      var args = [];
+
+      while (originalFn instanceof Function && args.length < originalFn.length) {
+        args.push('arg' + args.length);
+      }
+
+      return args.join(', ');
+    }
+
+    for (var prop in originalFn) {
+      if (prop === 'and' || prop === 'calls') {
+        throw new Error('Jasmine spies would overwrite the \'and\' and \'calls\' properties on the object being spied upon');
+      }
+
+      wrapper[prop] = originalFn[prop];
+    }
+
+    wrapper.and = spyStrategy;
+    wrapper.calls = callTracker;
+
+    return wrapper;
+  }
+
+  return Spy;
+};
